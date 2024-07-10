@@ -12,7 +12,6 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :create]
       get '/users/filter', to: 'users#filter'
       post '/users', to: 'users#create'
-      get '/users', to: 'users#index' 
     end
   end
 end
