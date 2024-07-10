@@ -6,17 +6,15 @@ class Api::V1::UsersController < ApplicationController
 	end
 
 	def create
-		debugger
   	@user = User.new(user_params)
   	if @user.save
-    		render json: @user, status: :created
+    	render json: @user, status: :created
   	else
-    		render json: @user.errors, status: :unprocessable_entity
+    	render json: @user.errors, status: :unprocessable_entity
   	end
 	end
 
   def filter
-  	# debugger
   	campaign_names = params[:campaign_names].split(',')
   	@users = User.where("JSON_CONTAINS(campaigns_list, ?) > 0", campaign_names.map { |name| { campaign_name: name } }.to_json)
   	render json: @users
